@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SocialPoint — Engage. Earn. Grow.</title>
+
+  <meta name="description"
+        content="SocialPoint is a social engagement platform where users can earn points and grow their media.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #070b14;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    header {
+      width: 100%;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1c2535;
+      background: #080d18;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #22c55e;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    button,
+    .btn {
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .login {
+      background: transparent;
+      color: white;
+      border: 1px solid #334155;
+    }
+
+    .signup {
+      background: #22c55e;
+      color: #04110a;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 20px;
+      background:
+        radial-gradient(circle at top, #12301f 0%, #070b14 45%);
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 30px;
+      background: #10261a;
+      color: #4ade80;
+      border: 1px solid #1f6138;
+      margin-bottom: 22px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(42px, 9vw, 78px);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .highlight {
+      color: #22c55e;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #aab5c7;
+      font-size: 18px;
+    }
+
+    .hero-buttons {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      background: #22c55e;
+      color: #04110a;
+      padding: 14px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .secondary-btn {
+      background: #111827;
+      color: white;
+      border: 1px solid #334155;
+      padding: 14px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .features {
+      padding: 70px 6%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 35px;
+      margin-bottom: 45px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #0d1422;
+      border: 1px solid #202c3f;
+      border-radius: 18px;
+      padding: 25px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #22c55e;
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #8996aa;
+      font-size: 14px;
+    }
+
+    .steps {
+      padding: 70px 6%;
+      background: #0a101c;
+    }
+
+    .step-container {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 25px;
+    }
+
+    .number {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: #22c55e;
+      color: #04110a;
+      font-weight: 900;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #64748b;
+      border-top: 1px solid #1c2535;
+    }
+
+    @media (max-width: 800px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .step-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      header {
+        padding: 15px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .login,
+      .signup {
+        padding: 9px 12px;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding: 55px 18px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">SocialPoint</div>
+
+    <div class="nav-buttons">
+      <a href="#" class="btn login">Login</a>
+      <a href="#" class="btn signup">Sign Up</a>
+    </div>
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="badge">
+          🚀 The Social Growth Platform
+        </div>
+
+        <h1>
+          Engage.<br>
+          <span class="highlight">Earn.</span>
+          Grow.
+        </h1>
+
+        <p>
+          SocialPoint helps creators and businesses engage with
+          the community, earn points, and build their media presence.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#" class="primary-btn">
+            Get Started Free →
+          </a>
+
+          <a href="#how" class="secondary-btn">
+            How It Works
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="features">
+
+      <h2 class="section-title">
+        Everything You Need
+      </h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="icon">⭐</div>
+          <h3>Earn Points</h3>
+          <p>
+            Complete eligible community tasks and earn
+            points for your account.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📈</div>
+          <h3>Grow Your Media</h3>
+          <p>
+            Use your points for eligible promotional
+            campaigns and reach more people.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏆</div>
+          <h3>Leaderboard</h3>
+          <p>
+            Track your progress and compete for a place
+            on the community leaderboard.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🛡️</div>
+          <h3>Secure Platform</h3>
+          <p>
+            Account protection, activity tracking and
+            anti-abuse systems built into the platform.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="steps" id="how">
+
+      <h2 class="section-title">
+        How SocialPoint Works
+      </h2>
+
+      <div class="step-container">
+
+        <div class="step">
+          <div class="number">1</div>
+          <h3>Create Account</h3>
+          <p>
+            Join SocialPoint and create your profile.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="number">2</div>
+          <h3>Earn Points</h3>
+          <p>
+            Participate in eligible community activities
+            and earn points.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="number">3</div>
+          <h3>Grow</h3>
+          <p>
+            Use your points for eligible promotional
+            opportunities.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 SocialPoint. All rights reserved.
+  </footer>
+
+</body>
+  </html>
