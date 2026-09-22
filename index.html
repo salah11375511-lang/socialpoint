@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>SocialPoint — Engage. Earn. Grow.</title>
+  <meta name="description" content="SocialPoint is a social engagement platform where users earn points and grow their media.">
 
-  <meta name="description"
-        content="SocialPoint is a social engagement platform where users can earn points and grow their media.">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
@@ -20,160 +20,103 @@
       font-family: Arial, sans-serif;
       background: #070b14;
       color: #ffffff;
-      line-height: 1.6;
+      min-height: 100vh;
     }
 
     header {
-      width: 100%;
-      padding: 18px 6%;
+      height: 65px;
+      padding: 0 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #1c2535;
-      background: #080d18;
+      justify-content: space-between;
+      border-bottom: 1px solid #20283a;
+      background: #0b101c;
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
     .logo {
-      font-size: 24px;
+      font-size: 23px;
       font-weight: 800;
       color: #22c55e;
     }
 
-    .nav-buttons {
+    .header-buttons {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
 
-    button,
-    .btn {
+    button {
       border: none;
-      text-decoration: none;
       cursor: pointer;
-      padding: 11px 18px;
-      border-radius: 10px;
+      border-radius: 9px;
+      padding: 11px 16px;
       font-weight: 700;
-      font-size: 14px;
     }
 
-    .login {
+    .login-btn {
       background: transparent;
       color: white;
-      border: 1px solid #334155;
+      border: 1px solid #34405a;
     }
 
-    .signup {
+    .signup-btn,
+    .primary,
+    .submit {
       background: #22c55e;
-      color: #04110a;
+      color: #041008;
     }
 
     .hero {
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 70px 20px;
-      background:
-        radial-gradient(circle at top, #12301f 0%, #070b14 45%);
-    }
-
-    .hero-content {
+      padding: 80px 20px 55px;
       max-width: 850px;
+      margin: auto;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 7px 14px;
-      border-radius: 30px;
-      background: #10261a;
-      color: #4ade80;
-      border: 1px solid #1f6138;
-      margin-bottom: 22px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    h1 {
-      font-size: clamp(42px, 9vw, 78px);
+    .hero h1 {
+      font-size: clamp(38px, 9vw, 70px);
       line-height: 1.05;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
-    .highlight {
+    .hero h1 span {
       color: #22c55e;
     }
 
     .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: #aab5c7;
+      color: #aab4c7;
       font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 30px;
     }
 
-    .hero-buttons {
-      margin-top: 32px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .primary-btn {
-      background: #22c55e;
-      color: #04110a;
-      padding: 14px 25px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .secondary-btn {
-      background: #111827;
-      color: white;
-      border: 1px solid #334155;
-      padding: 14px 25px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
+    .hero .primary {
+      font-size: 16px;
+      padding: 14px 24px;
     }
 
     .features {
-      padding: 70px 6%;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 35px;
-      margin-bottom: 45px;
-    }
-
-    .cards {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .card {
-      background: #0d1422;
-      border: 1px solid #202c3f;
-      border-radius: 18px;
+      background: #0e1524;
+      border: 1px solid #202b40;
+      border-radius: 15px;
       padding: 25px;
-      transition: 0.2s;
+      text-align: center;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #22c55e;
-    }
-
-    .icon {
-      font-size: 32px;
-      margin-bottom: 15px;
+    .card .icon {
+      font-size: 35px;
+      margin-bottom: 12px;
     }
 
     .card h3 {
@@ -181,83 +124,129 @@
     }
 
     .card p {
-      color: #8996aa;
-      font-size: 14px;
-    }
-
-    .steps {
-      padding: 70px 6%;
-      background: #0a101c;
-    }
-
-    .step-container {
-      max-width: 1000px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .step {
-      text-align: center;
-      padding: 25px;
-    }
-
-    .number {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 15px;
-      border-radius: 50%;
-      background: #22c55e;
-      color: #04110a;
-      font-weight: 900;
+      color: #8f9bb0;
+      line-height: 1.5;
     }
 
     footer {
       text-align: center;
-      padding: 30px 20px;
-      color: #64748b;
-      border-top: 1px solid #1c2535;
+      padding: 45px 20px;
+      color: #69758b;
     }
 
-    @media (max-width: 800px) {
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .75);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-      .step-container {
+    .modal-box {
+      width: 100%;
+      max-width: 410px;
+      background: #0e1524;
+      border: 1px solid #29364e;
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      background: transparent;
+      color: #aab4c7;
+      font-size: 24px;
+      padding: 5px;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 8px;
+    }
+
+    .sub {
+      color: #8995aa;
+      margin-bottom: 22px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 12px;
+      border-radius: 9px;
+      border: 1px solid #303d55;
+      background: #080d17;
+      color: white;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #22c55e;
+    }
+
+    .submit {
+      width: 100%;
+      margin-top: 5px;
+      padding: 14px;
+      font-size: 15px;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aab4c7;
+      line-height: 1.5;
+    }
+
+    #dashboard {
+      display: none;
+      max-width: 1000px;
+      margin: auto;
+      padding: 45px 20px;
+    }
+
+    .dashboard-box {
+      background: #0e1524;
+      border: 1px solid #202b40;
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    .points {
+      font-size: 42px;
+      font-weight: 800;
+      color: #22c55e;
+      margin: 15px 0;
+    }
+
+    .logout {
+      margin-top: 20px;
+      background: #1b2435;
+      color: white;
+    }
+
+    @media (max-width: 700px) {
+
+      .features {
         grid-template-columns: 1fr;
       }
-    }
 
-    @media (max-width: 500px) {
       header {
-        padding: 15px;
+        padding: 0 12px;
       }
 
       .logo {
         font-size: 20px;
       }
 
-      .login,
-      .signup {
-        padding: 9px 12px;
-      }
-
-      .hero {
-        min-height: 80vh;
-        padding: 55px 18px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
+      .header-buttons button {
+        padding: 9px 11px;
+        font-size: 12px;
       }
     }
   </style>
@@ -265,145 +254,557 @@
 
 <body>
 
-  <header>
-    <div class="logo">SocialPoint</div>
+<header id="mainHeader">
 
-    <div class="nav-buttons">
-      <a href="#" class="btn login">Login</a>
-      <a href="#" class="btn signup">Sign Up</a>
+  <div class="logo">
+    SocialPoint
+  </div>
+
+  <div class="header-buttons">
+
+    <button
+      class="login-btn"
+      onclick="openModal('login')">
+      Login
+    </button>
+
+    <button
+      class="signup-btn"
+      onclick="openModal('signup')">
+      Sign Up
+    </button>
+
+  </div>
+
+</header>
+
+
+<section class="hero" id="home">
+
+  <h1>
+    Engage.
+    <span>Earn.</span>
+    Grow.
+  </h1>
+
+  <p>
+    SocialPoint is a social engagement platform where users
+    can complete tasks, earn points and grow their social
+    media presence.
+  </p>
+
+  <button
+    class="primary"
+    onclick="openModal('signup')">
+    Get Started Free
+  </button>
+
+</section>
+
+
+<section class="features">
+
+  <div class="card">
+
+    <div class="icon">
+      ⭐
     </div>
-  </header>
+
+    <h3>
+      Earn Points
+    </h3>
+
+    <p>
+      Complete available engagement tasks
+      and earn SocialPoints.
+    </p>
+
+  </div>
 
 
-  <main>
+  <div class="card">
 
-    <section class="hero">
+    <div class="icon">
+      🚀
+    </div>
 
-      <div class="hero-content">
+    <h3>
+      Grow Your Media
+    </h3>
 
-        <div class="badge">
-          🚀 The Social Growth Platform
-        </div>
+    <p>
+      Use your earned points to promote
+      your social media profiles.
+    </p>
 
-        <h1>
-          Engage.<br>
-          <span class="highlight">Earn.</span>
-          Grow.
-        </h1>
-
-        <p>
-          SocialPoint helps creators and businesses engage with
-          the community, earn points, and build their media presence.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#" class="primary-btn">
-            Get Started Free →
-          </a>
-
-          <a href="#how" class="secondary-btn">
-            How It Works
-          </a>
-        </div>
-
-      </div>
-
-    </section>
+  </div>
 
 
-    <section class="features">
+  <div class="card">
 
-      <h2 class="section-title">
-        Everything You Need
-      </h2>
+    <div class="icon">
+      🤝
+    </div>
 
-      <div class="cards">
+    <h3>
+      Connect
+    </h3>
 
-        <div class="card">
-          <div class="icon">⭐</div>
-          <h3>Earn Points</h3>
-          <p>
-            Complete eligible community tasks and earn
-            points for your account.
-          </p>
-        </div>
+    <p>
+      Build an active community and
+      discover new creators.
+    </p>
 
-        <div class="card">
-          <div class="icon">📈</div>
-          <h3>Grow Your Media</h3>
-          <p>
-            Use your points for eligible promotional
-            campaigns and reach more people.
-          </p>
-        </div>
+  </div>
 
-        <div class="card">
-          <div class="icon">🏆</div>
-          <h3>Leaderboard</h3>
-          <p>
-            Track your progress and compete for a place
-            on the community leaderboard.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🛡️</div>
-          <h3>Secure Platform</h3>
-          <p>
-            Account protection, activity tracking and
-            anti-abuse systems built into the platform.
-          </p>
-        </div>
-
-      </div>
-
-    </section>
+</section>
 
 
-    <section class="steps" id="how">
+<section id="dashboard">
 
-      <h2 class="section-title">
-        How SocialPoint Works
-      </h2>
+  <div class="dashboard-box">
 
-      <div class="step-container">
+    <h2>
+      Welcome to SocialPoint 🎉
+    </h2>
 
-        <div class="step">
-          <div class="number">1</div>
-          <h3>Create Account</h3>
-          <p>
-            Join SocialPoint and create your profile.
-          </p>
-        </div>
+    <p id="userEmail"></p>
 
-        <div class="step">
-          <div class="number">2</div>
-          <h3>Earn Points</h3>
-          <p>
-            Participate in eligible community activities
-            and earn points.
-          </p>
-        </div>
+    <div class="points">
+      0 Points
+    </div>
 
-        <div class="step">
-          <div class="number">3</div>
-          <h3>Grow</h3>
-          <p>
-            Use your points for eligible promotional
-            opportunities.
-          </p>
-        </div>
+    <p>
+      Your SocialPoint dashboard will be built here.
+      Tasks, followers, likes, comments, campaigns
+      and rewards will be added step by step.
+    </p>
 
-      </div>
+    <button
+      class="logout"
+      onclick="logout()">
+      Logout
+    </button>
 
-    </section>
+  </div>
 
-  </main>
+</section>
 
 
-  <footer>
-    © 2026 SocialPoint. All rights reserved.
-  </footer>
+<footer>
+  © 2026 SocialPoint. All rights reserved.
+</footer>
+
+
+<!-- LOGIN / SIGNUP MODAL -->
+
+<div
+  class="modal"
+  id="authModal">
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      ×
+    </button>
+
+    <h2 id="modalTitle">
+      Welcome Back
+    </h2>
+
+    <p
+      class="sub"
+      id="modalSub">
+      Login to your SocialPoint account.
+    </p>
+
+
+    <input
+      type="text"
+      id="username"
+      placeholder="Username"
+      style="display:none;"
+    >
+
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email address"
+      autocomplete="email"
+    >
+
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
+
+
+    <button
+      class="submit"
+      id="submitBtn"
+      onclick="handleAuth()">
+      Login
+    </button>
+
+
+    <p
+      class="message"
+      id="message">
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   SUPABASE CONFIGURATION
+   ========================================= */
+
+const SUPABASE_URL =
+"https://sfrcccohlmnxzvgvvtuo.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_0ECpzgGMtawcYemS-Jf0lg_CsE_36DR";
+
+
+const { createClient } =
+supabase;
+
+
+const db =
+createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================================
+   AUTH MODE
+   ========================================= */
+
+let authMode = "login";
+
+
+/* =========================================
+   OPEN LOGIN / SIGNUP
+   ========================================= */
+
+function openModal(mode) {
+
+  authMode = mode;
+
+  document.getElementById(
+    "authModal"
+  ).style.display = "flex";
+
+
+  document.getElementById(
+    "message"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "email"
+  ).value = "";
+
+
+  document.getElementById(
+    "password"
+  ).value = "";
+
+
+  document.getElementById(
+    "username"
+  ).value = "";
+
+
+  if (mode === "signup") {
+
+    document.getElementById(
+      "modalTitle"
+    ).textContent =
+    "Create Account";
+
+
+    document.getElementById(
+      "modalSub"
+    ).textContent =
+    "Create your free SocialPoint account.";
+
+
+    document.getElementById(
+      "submitBtn"
+    ).textContent =
+    "Create Account";
+
+
+    document.getElementById(
+      "username"
+    ).style.display =
+    "block";
+
+  } else {
+
+    document.getElementById(
+      "modalTitle"
+    ).textContent =
+    "Welcome Back";
+
+
+    document.getElementById(
+      "modalSub"
+    ).textContent =
+    "Login to your SocialPoint account.";
+
+
+    document.getElementById(
+      "submitBtn"
+    ).textContent =
+    "Login";
+
+
+    document.getElementById(
+      "username"
+    ).style.display =
+    "none";
+  }
+}
+
+
+/* =========================================
+   CLOSE MODAL
+   ========================================= */
+
+function closeModal() {
+
+  document.getElementById(
+    "authModal"
+  ).style.display =
+  "none";
+}
+
+
+/* =========================================
+   LOGIN / SIGNUP
+   ========================================= */
+
+async function handleAuth() {
+
+  const email =
+  document.getElementById(
+    "email"
+  ).value.trim();
+
+
+  const password =
+  document.getElementById(
+    "password"
+  ).value;
+
+
+  const username =
+  document.getElementById(
+    "username"
+  ).value.trim();
+
+
+  const message =
+  document.getElementById(
+    "message"
+  );
+
+
+  message.textContent = "";
+
+
+  if (!email || !password) {
+
+    message.textContent =
+    "Please enter your email and password.";
+
+    return;
+  }
+
+
+  /* SIGN UP */
+
+  if (authMode === "signup") {
+
+    if (!username) {
+
+      message.textContent =
+      "Please choose a username.";
+
+      return;
+    }
+
+
+    if (password.length < 6) {
+
+      message.textContent =
+      "Password must be at least 6 characters.";
+
+      return;
+    }
+
+
+    const {
+      data,
+      error
+    } =
+    await db.auth.signUp({
+
+      email: email,
+
+      password: password,
+
+      options: {
+
+        data: {
+          username: username
+        }
+
+      }
+
+    });
+
+
+    if (error) {
+
+      message.textContent =
+      error.message;
+
+      return;
+    }
+
+
+    message.textContent =
+    "Account created successfully! Check your email if confirmation is required.";
+
+    return;
+  }
+
+
+  /* LOGIN */
+
+  const {
+    data,
+    error
+  } =
+  await db.auth.signInWithPassword({
+
+    email: email,
+
+    password: password
+
+  });
+
+
+  if (error) {
+
+    message.textContent =
+    error.message;
+
+    return;
+  }
+
+
+  closeModal();
+
+  showDashboard(
+    data.user
+  );
+}
+
+
+/* =========================================
+   SHOW DASHBOARD
+   ========================================= */
+
+function showDashboard(user) {
+
+  document.getElementById(
+    "home"
+  ).style.display =
+  "none";
+
+
+  document.querySelector(
+    ".features"
+  ).style.display =
+  "none";
+
+
+  document.getElementById(
+    "mainHeader"
+  ).style.display =
+  "none";
+
+
+  document.querySelector(
+    "footer"
+  ).style.display =
+  "none";
+
+
+  document.getElementById(
+    "dashboard"
+  ).style.display =
+  "block";
+
+
+  document.getElementById(
+    "userEmail"
+  ).textContent =
+  user.email;
+}
+
+
+/* =========================================
+   LOGOUT
+   ========================================= */
+
+async function logout() {
+
+  await db.auth.signOut();
+
+  location.reload();
+}
+
+
+/* =========================================
+   CHECK CURRENT SESSION
+   ========================================= */
+
+async function checkUser() {
+
+  const {
+    data
+  } =
+  await db.auth.getSession();
+
+
+  if (data.session) {
+
+    showDashboard(
+      data.session.user
+    );
+  }
+}
+
+
+checkUser();
+
+</script>
 
 </body>
   </html>
