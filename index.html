@@ -680,11 +680,19 @@ async function handleAuth() {
 
     if (error) {
 
-      message.textContent =
-      error.message;
-
-      return;
+    if (
+        error.message.includes("duplicate") ||
+        error.message.includes("23505")
+    ) {
+        message.textContent =
+        "Username already taken. Please choose another username.";
+    } else {
+        message.textContent =
+        error.message;
     }
+
+    return;
+}
 
 
     message.textContent =
